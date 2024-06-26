@@ -1,0 +1,92 @@
+<div class="breadcrumb-item"><a routerLink="/">Home</a></div>
+<div class="breadcrumb-item"><a routerLink="/tasks">Task List</a></div>
+
+
+<h2>Task Information</h2>
+@if (feedback.message) {
+<div class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+}
+@if (task) {
+<form #editForm="ngForm" (ngSubmit)="save()">
+  <!--   @if (task.id) {
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>ID</mat-label>
+    <input matInput [(ngModel)]="task.id" id="id" name="id" placeholder="ID" readonly>
+  </mat-form-field>
+  } -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="task.name" id="name" name="name" placeholder="Name" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Last Completed Date</mat-label>
+    <input matInput [matDatepicker]="picker"
+      [(ngModel)]="task.lastCompletedDate" ng-model-options="{timezone: 'UTC'}" name="task.lastCompletedDate"
+      placeholder="LastCompletedDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+
+  </mat-form-field>
+
+
+  <mat-form-field appearance="outline" class="half-width">
+    <mat-label>Target Date</mat-label>
+    <input matInput [matDatepicker]="picker2"
+      [(ngModel)]="task.targetDate" name="task.targetDate" placeholder="TargetDate">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  @if (task.repeatCycle < 1) {
+    <mat-form-field appearance="outline" class="input-spacer">
+    <mat-label>Expiration Date</mat-label>
+    <input matInput [matDatepicker]="picker3"
+      [(ngModel)]="task.expirationDate" name="task.expirationDate" placeholder="ExpirationDate">
+    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+    <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+    }
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Repeat Cycle</mat-label>
+      <input matInput [(ngModel)]="task.repeatCycle" id="repeatCycle" name="repeatCycle"
+        placeholder="RepeatCycle">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>comments</mat-label>
+      <textarea matInput
+
+        [(ngModel)]="task.comments" id="comments" name="comments"
+        placeholder="Comments"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="10"
+        cdkAutosizeMaxRows="20"></textarea>
+    </mat-form-field>
+
+    <!--
+  <mat-form-field class="full-width">
+    <mat-label>Completed</mat-label>
+    <input matInput [(ngModel)]="task.completed" id="completed" name="completed"
+      placeholder="Completed">
+  </mat-form-field>
+-->
+
+    @if (task.repeatCycle == 0) {
+    <label>Completed</label>
+    <mat-radio-group [(ngModel)]="task.completed" id="completed" name="completed"
+      placeholder="Completed">
+      <mat-radio-button [value]=false><mat-icon class="red">not_interested</mat-icon></mat-radio-button>
+      <mat-radio-button [value]=true><mat-icon class="green">done_outline</mat-icon></mat-radio-button>
+    </mat-radio-group>
+    }
+    <p></p>
+
+    <div class="button-row" role="task">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!editForm.form.valid" id="save">Save</button>
+      <button type="button" mat-button color="accent" (click)="cancel()" id="cancel">Cancel</button>
+    </div>
+</form>
+}

@@ -1,0 +1,69 @@
+<div class="breadcrumb-item"><a routerLink="/">Home</a></div>
+<div class="breadcrumb-item"><a routerLink="/meals">Meal List</a></div>
+
+
+<h2>Meal Information</h2>
+@if (feedback.message) {
+<div class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+}
+@if (meal) {
+<form #editForm="ngForm" (ngSubmit)="save()">
+  <!--   @if (meal.id) {
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>ID</mat-label>
+    <input matInput [(ngModel)]="meal.id" id="id" name="id" placeholder="ID" readonly>
+  </mat-form-field>
+  } -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="meal.name" id="name" name="name" placeholder="Name" required>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Reference</mat-label>
+
+    <input matInput [(ngModel)]="meal.reference" id="reference" name="reference"
+      placeholder="Reference">
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Rating</mat-label>
+    <input matInput [(ngModel)]="meal.rating" id="rating" name="rating"
+      placeholder="Rating">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Ease of preparation</mat-label>
+    <input matInput [(ngModel)]="meal.easeOfPrep" id="easeOfPrep" name="easeOfPrep"
+      placeholder="EaseOfPrep">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>instructions</mat-label>
+    <textarea matInput
+
+      [(ngModel)]="meal.instructions" id="instructions" name="instructions"
+      placeholder="Instructions"
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="10"
+      cdkAutosizeMaxRows="20"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Last Used Date</mat-label>
+    <input matInput [matDatepicker]="picker"
+      [(ngModel)]="meal.lastUsedDate" name="meal.lastUsedDate" placeholder="LastUsedDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+
+  </mat-form-field>
+
+  <div class="button-row" role="meal">
+    <button type="submit" mat-raised-button color="primary" [disabled]="!editForm.form.valid" id="save">Save</button>
+    <button type="button" mat-button color="accent" (click)="cancel()" id="cancel">Cancel</button>
+  </div>
+</form>
+}
