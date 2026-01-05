@@ -1,0 +1,19 @@
+<div class="breadcrumb-item"><a routerLink="/">Home</a></div>
+
+<h2>Report Generation</h2>
+
+
+<mat-radio-group [(ngModel)]="emailRequired" id="emailRequired" name="emailRequired"
+  placeholder="Email Required">
+  <mat-radio-button [value]=false><mat-icon class="red">block</mat-icon></mat-radio-button>
+  <mat-radio-button [value]=true><mat-icon class="green">email</mat-icon></mat-radio-button>
+</mat-radio-group>
+
+<p></p>
+<button type="button" mat-raised-button color="primary" (click)="oneOff()" id="oneOff">One Off Tasks</button>
+
+<p></p>
+<button type="button" mat-raised-button color="primary" (click)="repeatable()" id="repeatable">Repeatable Tasks</button>
+
+<p></p>
+<button type="button" mat-raised-button color="primary" (click)="expiring()" id="expiring">Expiring Tasks</button>

@@ -13,7 +13,15 @@
 
 <!-- <p>You selected: {{selected}}</p> -->
 
+
 <a [routerLink]="['/task/new']" mat-raised-button color="primary" style="float: right" id="add">Add Task</a>
+
+
+
+<button mat-raised-button color="primary" style="float: right" routerLink="/reports">Reports<mat-icon
+    color="secondary">email</mat-icon></button>
+
+
 
 <h2>{{title}} - {{selected}}</h2>
 @if (loading) {

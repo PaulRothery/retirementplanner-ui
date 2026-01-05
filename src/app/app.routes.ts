@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskEditComponent } from './task-edit/task-edit.component';
+import { TaskReportsComponent } from './task-reports/task-reports.component';
 import { MealListComponent } from './meal-list/meal-list.component';
 import { MealEditComponent } from './meal-edit/meal-edit.component';
 import { BackupComponent } from './backup/backup.component';
@@ -15,6 +16,10 @@ export const routes: Routes = [
   {
     path: 'tasks',
     component: TaskListComponent
+  },
+  {
+    path: 'reports',
+    component: TaskReportsComponent
   },
   {
     path: 'task/:id',
